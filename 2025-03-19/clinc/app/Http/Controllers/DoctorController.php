@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Doctor;
+use App\Models\Major;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorController extends Controller
 {
@@ -12,8 +14,28 @@ class DoctorController extends Controller
         $docs = Doctor::with('major')->get();
         return view('pages.doctors.index', compact('docs'));
     }
-    public function show()
+    public function show($id)
     {
-        return view('pages.doctors.show');
+        $doctor = Doctor::findOrFail($id);
+        return view('pages.doctors.show', compact('doctor'));
+    }
+
+    public function create()
+    {
+        $majors = Major::all();
+        return view('pages.doctors.create', compact('majors'));
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'phone' => 'required',
+            'major_id' => 'required',
+        ]);
+        $doc = Doctor::create($validated);
+        return redirect()->route('doctors')->with('success', 'Doctor created successfully');
     }
 }

@@ -18,4 +18,19 @@ class MajorController extends Controller
         $doctors = $major->doctors;
         return view('pages.major.doctors', compact('major', 'doctors'));
     }
+
+    public function create()
+    {
+        return view('pages.major.create');
+    }
+
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        $major = Major::create($validated);
+        return redirect()->route('majors.index')->with('success', 'Major created successfully');
+    }
 }

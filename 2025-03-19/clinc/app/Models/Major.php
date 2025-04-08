@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Major extends Model
 {
+    protected $fillable = ['name', 'description'];
     //
     public function doctors()
     {

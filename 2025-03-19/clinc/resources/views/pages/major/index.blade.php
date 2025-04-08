@@ -8,6 +8,14 @@
                 <li class="breadcrumb-item active" aria-current="page">majors</li>
             </ol>
         </nav>
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        <div class="d-flex justify-content-center mb-4">
+            <a class="btn btn-primary" href="{{ Route('majors.create') }}">Create major</a>
+        </div>
         <div class="majors-grid">
             @foreach($majors as $major)
                 <div class="card p-2" style="width: 18rem;">

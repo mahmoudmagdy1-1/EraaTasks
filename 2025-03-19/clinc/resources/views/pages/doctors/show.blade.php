@@ -15,7 +15,7 @@
                     <a class="text-decoration-none" href="{{ Route('home') }}">doctors</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    doctor name
+                    {{ $doctor->name }}
                 </li>
             </ol>
         </nav>
@@ -29,7 +29,7 @@
                     width="150"
                 />
                 <div class="details-info d-flex flex-column gap-3">
-                    <h4 class="card-title fw-bold">Doctor name</h4>
+                    <h4 class="card-title fw-bold">{{ $doctor->name }}</h4>
                     <h6 class="card-title fw-bold">
                         doctor major and more info about the doctor in summary
                     </h6>
